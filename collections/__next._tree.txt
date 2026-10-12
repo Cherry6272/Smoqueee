@@ -1,0 +1,6 @@
+:HL["/Smoqueee/_next/static/chunks/0q131ntdzmcal.css","style"]
+:HL["/Smoqueee/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/Smoqueee/_next/static/chunks/168jpmcqrql0n.css","style"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"collections","h":96,"c":"$Q2"}]]
+0:{"b":"ekKkmoN0EDYLp3W9D7IV_","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
