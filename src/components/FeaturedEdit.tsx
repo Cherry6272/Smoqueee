@@ -13,7 +13,7 @@ import { PRODUCTS, Product } from "@/data/products";
 export function FeaturedEdit() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  const featuredItems = PRODUCTS.filter((p) => p.isFeatured).slice(0, 3);
+  const featuredItems = PRODUCTS.filter((p) => p.isFeatured).slice(0, 4);
 
   return (
     <section className={styles.section}>
@@ -37,8 +37,8 @@ export function FeaturedEdit() {
           transition={{ duration: 0.8 }}
         >
           <Image
-            src="https://images.unsplash.com/photo-1512413916960-466d03a3d242?q=80&w=1000"
-            alt="The Obsidian Curated Edit"
+            src="/images/products/lighter.jpg"
+            alt="The Obsidian Smoke & Luxury Edit"
             fill
             style={{ objectFit: "cover", zIndex: 0 }}
             sizes="(max-width: 1024px) 100vw, 50vw"
@@ -50,18 +50,18 @@ export function FeaturedEdit() {
               left: 0,
               right: 0,
               bottom: 0,
-              backgroundColor: "rgba(0,0,0,0.5)",
+              backgroundColor: "rgba(0,0,0,0.45)",
               zIndex: 1,
             }}
           />
           <div className={styles.featuredItemInner}>
-            <span className={styles.featuredCategory}>Signature Showcase</span>
+            <span className={styles.featuredCategory}>Flagship Showcase</span>
             <h3 className={styles.featuredTitle}>The Obsidian Selection</h3>
             <p className={styles.featuredDesc}>
-              Discover our newest arrival of matte black smoke accessories paired with rare single-origin dark chocolates and extrait perfumes.
+              Discover our premier allocation of matte black torch lighters, Spanish cedar humidors, surgical titanium cutters, and rare European dark chocolates.
             </p>
-            <Link href="/collections" className={styles.featuredBtn}>
-              Shop Collection <ArrowRight size={14} />
+            <Link href="/collections?category=smoke-accessories" className={styles.featuredBtn}>
+              Smoke Collection <ArrowRight size={14} />
             </Link>
           </div>
         </motion.div>
