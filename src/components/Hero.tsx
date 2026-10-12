@@ -5,6 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Float, PresentationControls, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import styles from "./Hero.module.css";
 import { useTheme } from "next-themes";
 
@@ -82,8 +83,9 @@ export function Hero() {
           <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} intensity={1} />
           <PresentationControls
             global
-            config={{ mass: 2, tension: 500 }}
-            snap={{ mass: 4, tension: 1500 }}
+            snap
+            speed={1.5}
+            damping={0.1}
             rotation={[0, 0, 0]}
             polar={[-Math.PI / 4, Math.PI / 4]}
             azimuth={[-Math.PI / 4, Math.PI / 4]}
@@ -119,8 +121,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <button className={styles.primaryBtn}>Explore Collection</button>
-          <button className={styles.secondaryBtn}>Visit Smoquee</button>
+          <Link href="/collections" className={styles.primaryBtn}>Explore Collection</Link>
+          <Link href="/store" className={styles.secondaryBtn}>Visit Smoquee</Link>
         </motion.div>
       </div>
 

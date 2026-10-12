@@ -24,6 +24,8 @@
   font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  color: var(--text-primary);
+  text-decoration: none;
 }
 
 .navLinks {
@@ -38,6 +40,7 @@
   text-transform: uppercase;
   color: var(--text-secondary);
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .navLink:hover {
@@ -47,7 +50,7 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.25rem;
 }
 
 .iconButton {
@@ -58,6 +61,9 @@
   height: 40px;
   border-radius: 50%;
   color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -66,8 +72,97 @@
   transform: scale(1.05);
 }
 
+.mobileMenuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile Drawer Overlay */
+.mobileDrawer {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-primary);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 6%;
+  color: var(--text-primary);
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.drawerNavLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin-bottom: auto;
+}
+
+.drawerNavLink {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.drawerNavLink:hover {
+  color: var(--accent-primary);
+}
+
+.drawerFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.drawerThemeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawerThemeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.drawerLocation {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+}
+
 @media (max-width: 768px) {
   .navLinks {
     display: none;
+  }
+  .mobileMenuBtn {
+    display: flex;
   }
 }

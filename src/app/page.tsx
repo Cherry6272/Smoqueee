@@ -6,6 +6,7 @@ import { CategoryShowcase } from "@/components/CategoryShowcase";
 import { BrandStory } from "@/components/BrandStory";
 import { FeaturedEdit } from "@/components/FeaturedEdit";
 import { StoreLocation } from "@/components/StoreLocation";
+import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <CategoryShowcase />
       <FeaturedEdit />
       <StoreLocation />
+      <Footer />
     </main>
   );
 }

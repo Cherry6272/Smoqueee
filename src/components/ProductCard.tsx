@@ -3,19 +3,10 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { Product } from "@/data/products";
 import styles from "./ProductCard.module.css";
 
-export interface Product {
-  id: string;
-  name: string;
-  category: string;
-  description: string;
-  price: string;
-  tags: string[];
-  availability: "In Stock" | "Out of Stock" | "Limited";
-  mainImage?: string;
-  secondaryImage?: string;
-}
+export type { Product };
 
 interface ProductCardProps {
   product: Product;
@@ -24,59 +15,97 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, index, onQuickView }: ProductCardProps) {
+  const handleOpen = () => {
+    if (onQuickView) onQuickView(product);
+  };
+
   return (
     <motion.div
       className={styles.card}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.4) }}
+      onClick={handleOpen}
+      tabIndex={0}
+      role="button"
+      aria-label={`View details for ${product.name}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleOpen();
+        }
+      }}
     >
       <div className={styles.imageContainer}>
         {product.mainImage ? (
-          <Image src={product.mainImage} alt={product.name} fill style={{ objectFit: 'cover' }} className={styles.image} sizes="(max-width: 1024px) 100vw, 50vw" />
+          <Image
+            src={product.mainImage}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.image}
+          />
         ) : (
-          <div 
-            className={styles.image} 
-            style={{ backgroundColor: "var(--bg-tertiary)", display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          <div
+            className={styles.image}
+            style={{
+              backgroundColor: "var(--bg-tertiary)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
           >
-            <span style={{color: "var(--text-secondary)", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase"}}>Product View 1</span>
+            <span
+              style={{
+                color: "var(--text-secondary)",
+                fontSize: "0.8rem",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+              }}
+            >
+              SMOQUEE
+            </span>
           </div>
         )}
 
-        {product.secondaryImage ? (
-          <Image src={product.secondaryImage} alt={`${product.name} alternate`} fill style={{ objectFit: 'cover' }} className={styles.secondaryImage} sizes="(max-width: 1024px) 100vw, 50vw" />
-        ) : product.mainImage ? (
-          <Image src={product.mainImage} alt={product.name} fill style={{ objectFit: 'cover' }} className={styles.secondaryImage} sizes="(max-width: 1024px) 100vw, 50vw" />
-        ) : (
-          <div 
-            className={styles.secondaryImage} 
-            style={{ backgroundColor: "var(--accent-primary)", display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <span style={{color: "var(--bg-primary)", fontSize: "0.8rem", letterSpacing: "0.1em", textTransform: "uppercase"}}>Product View 2</span>
-          </div>
+        {product.secondaryImage && (
+          <Image
+            src={product.secondaryImage}
+            alt={`${product.name} alternate view`}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className={styles.secondaryImage}
+          />
         )}
-        
-        <button 
+
+        <button
           className={styles.quickViewBtn}
+          type="button"
           onClick={(e) => {
             e.stopPropagation();
-            if (onQuickView) onQuickView(product);
+            handleOpen();
           }}
+          aria-label={`Quick view ${product.name}`}
         >
           Quick View
         </button>
       </div>
-      
+
       <div className={styles.content}>
-        <span className={styles.category}>{product.category}</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span className={styles.category}>{product.brand || product.category}</span>
+          <span style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "var(--accent-primary)" }}>
+            {product.availability}
+          </span>
+        </div>
         <h3 className={styles.title}>{product.name}</h3>
         <p className={styles.description}>{product.description}</p>
-        
+
         <div className={styles.footer}>
           <span className={styles.price}>{product.price}</span>
           <span className={styles.exploreLink}>
-            View <ArrowRight size={14} />
+            Details <ArrowRight size={14} />
           </span>
         </div>
       </div>

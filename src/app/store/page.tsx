@@ -2,14 +2,14 @@
 
 import { Navbar } from "@/components/Navbar";
 import { StoreLocation } from "@/components/StoreLocation";
+import { Footer } from "@/components/Footer";
 
-export default function Store() {
+export default function StorePage() {
   return (
-    <main>
+    <main style={{ minHeight: "100vh", paddingTop: "10vh" }}>
       <Navbar />
-      <div style={{ paddingTop: "10vh", minHeight: "100vh" }}>
-        <StoreLocation />
-      </div>
+      <StoreLocation />
+      <Footer />
     </main>
   );
 }
